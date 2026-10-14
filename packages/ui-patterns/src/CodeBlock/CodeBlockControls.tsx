@@ -82,7 +82,7 @@ export function CodeCopyButton({
               className
             )}
             aria-label={label}
-            // Tooltip repeats the label; screen readers would read it twice
+            // the tooltip repeats the label, so screen readers read it twice
             aria-describedby={undefined}
           >
             <CrossfadeIcon active={copied} activeIcon={Check} inactiveIcon={Copy} />
@@ -128,7 +128,7 @@ export function CodeBlockControls({ content }: { content: string }) {
               'hover:bg-[var(--btn-active)]'
             )}
             aria-label={isWrapped ? 'Disable word wrap' : 'Enable word wrap'}
-            // Tooltip repeats the label; screen readers would read it twice
+            // the tooltip repeats the label, so screen readers read it twice
             aria-describedby={undefined}
           >
             <CrossfadeIcon
