@@ -90,16 +90,6 @@ export const fitEdges = ({ size, target }: { size: number; target: number }): nu
   return Array.from({ length: count + 1 }, (_, i) => roundEdge((i * size) / count || 0))
 }
 
-export const splitEdges = ({ edges, target }: { edges: number[]; target: number }): number[] => {
-  const slots = [edges[0] ?? 0]
-  for (let i = 0; i < edges.length - 1; i++) {
-    const width = edges[i + 1] - edges[i]
-    const count = Math.max(1, Math.floor(width / target))
-    for (let k = 1; k <= count; k++) slots.push(roundEdge(edges[i] + (k * width) / count))
-  }
-  return slots
-}
-
 export const latticeSize = ({ xs, ys }: Lattice) => ({
   cols: Math.max(0, xs.length - 1),
   rows: Math.max(0, ys.length - 1),
