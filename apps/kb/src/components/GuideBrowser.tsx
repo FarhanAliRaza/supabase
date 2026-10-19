@@ -1,7 +1,6 @@
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { Fragment, useId, useState, useSyncExternalStore } from 'react'
 import {
-  Button,
   cn,
   DropdownMenu,
   DropdownMenuContent,
@@ -160,9 +159,19 @@ export const GuideBrowser = ({ title, guides, param = 'topic', className }: Guid
             />
             {hasMore ? (
               <div className="flex justify-center py-6">
-                <Button variant="default" size="small" onClick={handleLoadMore}>
+                <button
+                  type="button"
+                  onClick={handleLoadMore}
+                  className={cn(
+                    'inline-flex cursor-pointer items-center gap-1.5 rounded-full py-1 pl-2.5 pr-3 text-xs text-foreground',
+                    'bg-surface-200/90 shadow-sm ring-1 ring-foreground/10 backdrop-blur-sm',
+                    'transition-[background-color,scale] duration-200 ease-out',
+                    'hover:bg-surface-300 active:scale-[0.96] focus-ring'
+                  )}
+                >
+                  <ChevronDown aria-hidden className="size-3.5" />
                   Load more
-                </Button>
+                </button>
               </div>
             ) : null}
           </div>
