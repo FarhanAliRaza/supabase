@@ -104,6 +104,22 @@ export const FORMAT_TOPICS: Topic[] = [
 export const pickCoverTopic = (topics: Topic[]): Topic | null =>
   topics.find((topic) => FORMAT_TOPICS.includes(topic)) ?? topics[0] ?? null
 
+type ContentCollection = 'guides' | 'troubleshooting'
+
+interface IsInTopicParams {
+  collection: ContentCollection
+  topics: readonly string[]
+  topic: Topic
+}
+
+// the topic pages and scripts/generate-markdown.mjs both use this, so they list the same entries
+export const isInTopic = ({ collection, topics, topic }: IsInTopicParams): boolean => {
+  if (collection !== 'troubleshooting') return topics.includes(topic)
+  // troubleshooting is a content type. other type topics never list it
+  if (topic === 'Troubleshooting') return true
+  return !FORMAT_TOPICS.includes(topic) && topics.includes(topic)
+}
+
 // federated collections tag with their own vocabulary, which may not match kb's topics
 export const isKnownTopic = (topic: string): topic is Topic =>
   TOPIC_NAMES.some((name) => name === topic)
